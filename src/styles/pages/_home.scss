@@ -1,0 +1,58 @@
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+.home {
+  font-family: "RedRose", sans-serif;
+  height: 100vh;
+  background: $color-dark;
+  position: relative;
+}
+
+.home__subtitle {
+  color: $color-light;
+  font-size: $size-l;
+}
+
+.home__title {
+  color: $color-light;
+  font-size: 9rem;
+  font-weight: bold;
+  margin-bottom: $m-l;
+}
+
+.home__bg-icon {
+  position: absolute;
+  bottom: 15px;
+  left: 0px;
+  opacity: 0.65;
+  width: 300px;
+}
+
+.btn-play {
+  display: flex;
+  background-color: $color-accent;
+  color: $color-dark;
+  padding: $p-l;
+  margin-top: $m-l;
+  font-size: $size-m;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &__icon {
+    transition: rotate 0.3s ease-in-out;
+  }
+
+  &:hover &__icon {
+    rotate: -36deg;
+  }
+
+  &:hover &__arrow {
+    content: url("/images/basic/arrow_bold.png");
+  }
+}

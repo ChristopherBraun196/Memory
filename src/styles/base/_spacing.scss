@@ -1,0 +1,18 @@
+$spacing-sizes: (
+  zero: 0px,
+  s: 8px,
+  m: 16px,
+  l: 24px,
+);
+
+@each $margin, $size in $spacing-sizes {
+  .margin-#{$margin} {
+    margin: $size;
+  }
+}
+
+@each $padding, $size in $spacing-sizes {
+  .padding-#{$padding} {
+    padding: $size;
+  }
+}
