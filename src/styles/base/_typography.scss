@@ -14,8 +14,24 @@ $text-sizes: (
   }
 }
 
+@font-face {
+  font-family: "redRose";
+  src: url("/fonts/red_rose/RedRose-VariableFont_wght.ttf");
+}
 
 @font-face {
-  font-family: redRose;
-  src: url("/fonts/red_rose/RedRose-VariableFont_wght.ttf");
+  font-family: "almarai";
+  src: url("/fonts/almarai/Almarai-Regular.ttf");
+}
+
+@font-face {
+  font-family: "almarai";
+  src: url("/fonts/almarai/Almarai-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "almarai";
+  src: url("/fonts/almarai/Almarai-Regular.ttf");
+  font-weight: 400;
 }

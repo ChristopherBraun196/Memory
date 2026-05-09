@@ -28,7 +28,80 @@
       />
     </section>
 
-    <section class="screen settings screen--active"></section>
+    <section class="screen settings">
+      <h2 class="settings__title">Settings</h2>
+      <div class="settings__divider"></div>
+      <div class="settings__content">
+        <div class="settings__left">
+          <fieldset>
+            <legend>
+              <img src="./public/images/basic/palette.svg" alt="" />Game themes
+            </legend>
+            <label>
+              <input type="radio" name="theme" value="code-vibes" /> Code vibes
+              theme
+              <span class="label__indicator"></span>
+            </label>
+            <label>
+              <input type="radio" name="theme" value="gaming" /> Gaming theme
+              <span class="label__indicator"></span>
+            </label>
+            <label>
+              <input type="radio" name="theme" value="gaming" /> DA Projects
+              theme
+              <span class="label__indicator"></span>
+            </label>
+            <label>
+              <input type="radio" name="theme" value="gaming" /> Food theme
+              <span class="label__indicator"></span>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>
+              <img src="./public/images/basic/chess_pawn.svg" alt="" />Choose
+              player
+            </legend>
+            <label>
+              <input type="radio" name="player" value="blue" /> Blue
+              <span class="label__indicator"></span>
+            </label>
+            <label>
+              <input type="radio" name="player" value="orange" /> Orange
+              <span class="label__indicator"></span>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>
+              <img src="./public/images/basic/style.svg" alt="" />Board Size
+            </legend>
+            <label>
+              <input type="radio" name="board-size" value="16" /> 16 cards
+              <span class="label__indicator"></span>
+            </label>
+            <label>
+              <input type="radio" name="board-size" value="24" /> 24 cards
+              <span class="label__indicator"></span>
+            </label>
+            <label>
+              <input type="radio" name="board-size" value="36" /> 36 cards
+              <span class="label__indicator"></span>
+            </label>
+          </fieldset>
+        </div>
+
+        <div class="settings__right">
+          <img src="./public/images/vibes_theme/vibe_theme.png" alt="" />
+          <div class="settings__bar">
+            <span id="selected-theme">Game theme</span>
+            <span id="selected-player">Player</span>
+            <span id="selected-size">Board size</span>
+            <button class="btn-start">Start</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
