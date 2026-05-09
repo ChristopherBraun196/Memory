@@ -1,0 +1,28 @@
+{
+  "name": "memory",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChristopherBraun196/Memory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ChristopherBraun196/Memory/issues"
+  },
+  "homepage": "https://github.com/ChristopherBraun196/Memory#readme",
+  "devDependencies": {
+    "sass": "^1.99.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.11"
+  }
+}
