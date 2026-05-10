@@ -35,69 +35,87 @@
         <div class="settings__left">
           <fieldset>
             <legend>
-              <img src="./public/images/basic/palette.svg" alt="" />Game themes
+              <img src="./public/images/basic/palette.svg" alt="game img" />Game
+              themes
             </legend>
             <label>
-              <input type="radio" name="theme" value="code-vibes" /> Code vibes
+              <input type="radio" name="theme" value="Code theme" /> Code vibes
               theme
               <span class="label__indicator"></span>
             </label>
             <label>
-              <input type="radio" name="theme" value="gaming" /> Gaming theme
+              <input type="radio" name="theme" value="Game theme" /> Gaming theme
               <span class="label__indicator"></span>
             </label>
             <label>
-              <input type="radio" name="theme" value="gaming" /> DA Projects
+              <input type="radio" name="theme" value="DA theme" /> DA Projects
               theme
               <span class="label__indicator"></span>
             </label>
             <label>
-              <input type="radio" name="theme" value="gaming" /> Food theme
+              <input type="radio" name="theme" value="Food theme" /> Food theme
               <span class="label__indicator"></span>
             </label>
           </fieldset>
 
           <fieldset>
             <legend>
-              <img src="./public/images/basic/chess_pawn.svg" alt="" />Choose
-              player
+              <img
+                src="./public/images/basic/chess_pawn.svg"
+                alt="player img"
+              />Choose player
             </legend>
             <label>
-              <input type="radio" name="player" value="blue" /> Blue
+              <input type="radio" name="player" value="Player blue" /> Blue
               <span class="label__indicator"></span>
             </label>
             <label>
-              <input type="radio" name="player" value="orange" /> Orange
+              <input type="radio" name="player" value="Player orange" /> Orange
               <span class="label__indicator"></span>
             </label>
           </fieldset>
 
           <fieldset>
             <legend>
-              <img src="./public/images/basic/style.svg" alt="" />Board Size
+              <img src="./public/images/basic/style.svg" alt="Board img" />Board
+              Size
             </legend>
             <label>
-              <input type="radio" name="board-size" value="16" /> 16 cards
+              <input type="radio" name="board-size" value="16 cards" /> 16 cards
               <span class="label__indicator"></span>
             </label>
             <label>
-              <input type="radio" name="board-size" value="24" /> 24 cards
+              <input type="radio" name="board-size" value="24 cards" /> 24 cards
               <span class="label__indicator"></span>
             </label>
             <label>
-              <input type="radio" name="board-size" value="36" /> 36 cards
+              <input type="radio" name="board-size" value="36 cards" /> 36 cards
               <span class="label__indicator"></span>
             </label>
           </fieldset>
         </div>
 
         <div class="settings__right">
-          <img src="./public/images/vibes_theme/vibe_theme.png" alt="" />
-          <div class="settings__bar">
-            <span id="selected-theme">Game theme</span>
-            <span id="selected-player">Player</span>
-            <span id="selected-size">Board size</span>
-            <button class="btn-start">Start</button>
+          <img
+            class="settings__bar-img"
+            src="./public/images/vibes_theme/vibe_theme.png"
+            alt="game img"
+          />
+          <div class="settings__preview">
+            <div class="settings__bar">
+              <span id="selected-theme">Game theme</span>
+              <span class="settings__bar-divider">/</span>
+              <span id="selected-player">Player</span>
+              <span class="settings__bar-divider">/</span>
+              <span id="selected-size">Board size</span>
+              <button class="settings__bar-btn" disabled>
+                <img
+                  class="settings__bar-btn-icon"
+                  src="public/images/basic/smart_display.svg"
+                  alt="start img"
+                />Start
+              </button>
+            </div>
           </div>
         </div>
       </div>
