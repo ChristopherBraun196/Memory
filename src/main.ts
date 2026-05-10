@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import "./styles/style.scss";
 
 const btnPlay = document.querySelector(".btn-play") as HTMLButtonElement;
@@ -28,28 +29,28 @@ const themeImg = document.querySelector(
 ) as HTMLImageElement;
 
 const themeImages: Record<string, string> = {
-  "Code theme": "./public/images/vibes_theme/vibe_theme.png",
-  "Game theme": "./public/images/game_theme/game_theme.png",
-  "DA theme": "./public/images/da_theme/da_projects_theme.png",
-  "Food theme": "./public/images/food_theme/food_theme.png",
+  "Code theme": `${import.meta.env.BASE_URL}images/vibes_theme/vibe_theme.png`,
+  "Game theme": `${import.meta.env.BASE_URL}images/game_theme/game_theme.png`,
+  "DA theme": `${import.meta.env.BASE_URL}images/da_theme/da_projects_theme.png`,
+  "Food theme": `${import.meta.env.BASE_URL}images/food_theme/food_theme.png`,
 };
 
 const themeRadios = document.querySelectorAll(
   'input[name="theme"]',
 ) as NodeListOf<HTMLInputElement>;
 
-function init():void {
+function init(): void {
   btnPlay?.addEventListener("click", goToSettings);
   getSettings();
   previewTheme();
 }
 
-function goToSettings():void {
+function goToSettings(): void {
   homeScreen?.classList.remove("screen--active");
   settingsScreen?.classList.add("screen--active");
 }
 
-function getSettings():void {
+function getSettings(): void {
   radios.forEach((radio) => {
     radio.addEventListener("change", () => {
       if (radio.name === "theme") {
@@ -67,7 +68,7 @@ function getSettings():void {
   });
 }
 
-function checkSettings():void {
+function checkSettings(): void {
   const themeSelected = document.querySelector(
     'input[name="theme"]:checked',
   ) as HTMLInputElement;
@@ -83,7 +84,7 @@ function checkSettings():void {
   }
 }
 
-function previewTheme():void {
+function previewTheme(): void {
   themeRadios.forEach((radio) => {
     const label = radio.closest("label");
 
