@@ -1,10 +1,15 @@
 /// <reference types="vite/client" />
 import "./styles/style.scss";
-
-const btnPlay = document.querySelector(".btn-play") as HTMLButtonElement;
-
-const homeScreen = document.querySelector(".home") as HTMLElement;
-const settingsScreen = document.querySelector(".settings") as HTMLElement;
+import {
+  vibeTheme,
+  gamingTheme,
+  daTheme,
+  foodTheme,
+  vibeBackground,
+  gameBackground,
+  daBackground,
+  foodBackground,
+} from "./data";
 
 const selectedThemeSpan = document.querySelector(
   "#selected-theme",
@@ -15,10 +20,6 @@ const selectedPlayerSpan = document.querySelector(
 const selectedSizeSpan = document.querySelector(
   "#selected-size",
 ) as HTMLSpanElement;
-
-const radios = document.querySelectorAll(
-  'input[type="radio"]',
-) as NodeListOf<HTMLInputElement>;
 
 const startBtn = document.querySelector(
   ".settings__bar-btn",
@@ -39,10 +40,17 @@ const themeRadios = document.querySelectorAll(
   'input[name="theme"]',
 ) as NodeListOf<HTMLInputElement>;
 
+const gameScreen = document.querySelector(".game") as HTMLElement;
+
+const homeScreen = document.querySelector(".home") as HTMLElement;
+const settingsScreen = document.querySelector(".settings") as HTMLElement;
+
 function init(): void {
+  const btnPlay = document.querySelector(".btn-play") as HTMLButtonElement;
   btnPlay?.addEventListener("click", goToSettings);
   getSettings();
   previewTheme();
+  startBtn.addEventListener("click", startGame);
 }
 
 function goToSettings(): void {
@@ -51,6 +59,9 @@ function goToSettings(): void {
 }
 
 function getSettings(): void {
+  const radios = document.querySelectorAll(
+    'input[type="radio"]',
+  ) as NodeListOf<HTMLInputElement>;
   radios.forEach((radio) => {
     radio.addEventListener("change", () => {
       if (radio.name === "theme") {
@@ -100,6 +111,37 @@ function previewTheme(): void {
       }
     });
   });
+}
+
+function startGame(): void {
+  settingsScreen.classList.remove("screen--active");
+  gameScreen.classList.add("screen--active");
+
+  const selectedSize = (
+    document.querySelector(
+      'input[name="board-size"]:checked',
+    ) as HTMLInputElement
+  ).value;
+  const cards = gameStartTheme();
+}
+
+function gameStartTheme() {
+  const selectedTheme = (
+    document.querySelector('input[name="theme"]:checked') as HTMLInputElement
+  ).value;
+
+  let cards;
+
+  if (selectedTheme === "Code theme") {
+    cards = vibeTheme;
+  } else if (selectedTheme === "Game theme") {
+    cards = gamingTheme;
+  } else if (selectedTheme === "DA theme") {
+    cards = daTheme;
+  } else {
+    cards = foodTheme;
+  }
+  return cards; 
 }
 
 init();
