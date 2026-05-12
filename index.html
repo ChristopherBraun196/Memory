@@ -44,7 +44,8 @@
               <span class="label__indicator"></span>
             </label>
             <label>
-              <input type="radio" name="theme" value="Game theme" /> Gaming theme
+              <input type="radio" name="theme" value="Game theme" /> Gaming
+              theme
               <span class="label__indicator"></span>
             </label>
             <label>
@@ -121,7 +122,21 @@
       </div>
     </section>
 
-    <section class="screen game"></section>
+    <section class="screen game">
+      <div class="game__bar">
+        <div class="game__players">
+          <span class="game__player">Blue: <span id="score-blue">0</span></span>
+          <span class="game__player"
+            >Orange: <span id="score-orange">0</span></span
+          >
+        </div>
+        <div class="game__current-player">
+          <span id="current-player"></span>
+        </div>
+        <button class="game__exit-btn">Exit game</button>
+      </div>
+      <div class="game__board"></div>
+    </section>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

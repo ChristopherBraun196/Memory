@@ -1,0 +1,20 @@
+.game__board {
+  display: grid;
+
+  &--16 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  &--24 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  &--36 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}

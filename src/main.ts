@@ -41,9 +41,12 @@ const themeRadios = document.querySelectorAll(
 ) as NodeListOf<HTMLInputElement>;
 
 const gameScreen = document.querySelector(".game") as HTMLElement;
+const gameBoard = document.querySelector(".game__board") as HTMLElement;
 
 const homeScreen = document.querySelector(".home") as HTMLElement;
 const settingsScreen = document.querySelector(".settings") as HTMLElement;
+
+const scoreBlue = document.querySelector("#score-blue") as HTMLSpanElement;
 
 function init(): void {
   const btnPlay = document.querySelector(".btn-play") as HTMLButtonElement;
@@ -123,6 +126,8 @@ function startGame(): void {
     ) as HTMLInputElement
   ).value;
   const cards = gameStartTheme();
+
+  createGame(cards, selectedSize);
 }
 
 function gameStartTheme() {
@@ -141,7 +146,31 @@ function gameStartTheme() {
   } else {
     cards = foodTheme;
   }
-  return cards; 
+  return cards;
+}
+
+function createGame(
+  cards: { id: number; image: string }[],
+  selectedSize: string,
+): void {
+  /*html*/
+  const count = parseInt(selectedSize) / 2;
+  const selectedCards = cards.slice(0, count);
+  const doubledCards = [...selectedCards, ...selectedCards];
+
+  doubledCards.sort(() => Math.random() - 0.5);
+  gameBoard.classList.add(`game__board--${parseInt(selectedSize)}`);
+  doubledCards.forEach((card) => {
+    const cardElement = document.createElement("div");
+    cardElement.classList.add("card");
+    cardElement.innerHTML = `
+    <div class="card__front"><img src="${card.image}"></div>
+    <div class="card__back"></div>
+`;
+
+    gameBoard.appendChild(cardElement);
+  });
+  scoreBlue.textContent = "1";
 }
 
 init();
