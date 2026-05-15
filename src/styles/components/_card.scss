@@ -1,0 +1,48 @@
+@use "../abstract/variables" as *;
+
+.card {
+  height: 100px;
+  aspect-ratio: 1/1;
+  perspective: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  gap: 1rem;
+  border: none;
+
+  &__front img {
+    width: auto;
+    height: 60%;
+    object-fit: contain;
+  }
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 300ms ease-in-out;
+  }
+
+  &__front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+    // background: black;
+    backface-visibility: hidden;
+  }
+
+  &__back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+  }
+
+  &.is-flipped &__inner {
+    transform: rotateY(180deg);
+  }
+}

@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory</title>
-    <script type="module" crossorigin src="/Memory/assets/index-BEwv_M7z.js"></script>
-    <link rel="stylesheet" crossorigin href="/Memory/assets/index-BEB5MCG7.css">
+    <script type="module" crossorigin src="/Memory/assets/index-o4-YbVC1.js"></script>
+    <link rel="stylesheet" crossorigin href="/Memory/assets/index-CzpiTpqy.css">
   </head>
   <body>
     <section class="screen home screen--active">
@@ -46,7 +46,8 @@
               <span class="label__indicator"></span>
             </label>
             <label>
-              <input type="radio" name="theme" value="Game theme" /> Gaming theme
+              <input type="radio" name="theme" value="Game theme" /> Gaming
+              theme
               <span class="label__indicator"></span>
             </label>
             <label>
@@ -121,6 +122,22 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="screen game">
+      <div class="game__bar">
+        <div class="game__players">
+          <span class="game__player">Blue: <span id="score-blue">0</span></span>
+          <span class="game__player"
+            >Orange: <span id="score-orange">0</span></span
+          >
+        </div>
+        <div class="game__current-player">
+          <span id="current-player"></span>
+        </div>
+        <button class="game__exit-btn">Exit game</button>
+      </div>
+      <div class="game__board"></div>
     </section>
 
   </body>

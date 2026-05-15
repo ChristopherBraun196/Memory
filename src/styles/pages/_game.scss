@@ -1,20 +1,59 @@
+@use "../abstract/variables" as *;
+
+.game {
+  height: 100vh;
+  overflow: hidden;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .game__board {
   display: grid;
+  margin-top: 2rem;
+  place-items: center;
+  gap: 1rem;
 
   &--16 {
     grid-template-columns: repeat(4, 1fr);
   }
   &--24 {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
   &--36 {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
-.card{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
+.game__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 3rem 4rem;
+}
+
+.theme--code-theme {
+  background-color: $color-dark;
+
+  .card__front {
+    background:rgb(149 213 196);
+  }
+
+  .card__back {
+    background-image: url("/images/vibes_theme/cards/card_background.png");
+    background-size: cover;
+    background-color: $color-dark;
+  }
+}
+
+.theme--game-theme {
+  // styles
+}
+
+.theme--da-theme {
+  // styles
+}
+
+.theme--food-theme {
+  // styles
 }

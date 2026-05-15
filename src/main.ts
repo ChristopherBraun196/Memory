@@ -47,6 +47,19 @@ const homeScreen = document.querySelector(".home") as HTMLElement;
 const settingsScreen = document.querySelector(".settings") as HTMLElement;
 
 const scoreBlue = document.querySelector("#score-blue") as HTMLSpanElement;
+const scoreOrange = document.querySelector("#score-orange") as HTMLSpanElement;
+
+const currentPlayerSpan = document.querySelector(
+  "#current-player",
+) as HTMLSpanElement;
+
+let firstCard: HTMLElement | null = null;
+let secondCard: HTMLElement | null = null;
+let isLocked = false;
+
+let currentPlayer = "blue";
+let scoreBlueCount = 0;
+let scoreOrangeCount = 0;
 
 function init(): void {
   const btnPlay = document.querySelector(".btn-play") as HTMLButtonElement;
@@ -119,6 +132,7 @@ function previewTheme(): void {
 function startGame(): void {
   settingsScreen.classList.remove("screen--active");
   gameScreen.classList.add("screen--active");
+  currentPlayerSpan.textContent = currentPlayer;
 
   const selectedSize = (
     document.querySelector(
@@ -134,6 +148,9 @@ function gameStartTheme() {
   const selectedTheme = (
     document.querySelector('input[name="theme"]:checked') as HTMLInputElement
   ).value;
+  gameScreen.classList.add(
+    `theme--${selectedTheme.toLowerCase().replace(" ", "-")}`,
+  );
 
   let cards;
 
@@ -160,17 +177,63 @@ function createGame(
 
   doubledCards.sort(() => Math.random() - 0.5);
   gameBoard.classList.add(`game__board--${parseInt(selectedSize)}`);
+
   doubledCards.forEach((card) => {
-    const cardElement = document.createElement("div");
-    cardElement.classList.add("card");
+    const cardElement = document.createElement("button");
+
+    cardElement.classList.add("card", "is-flipped");
+
+    cardElement.dataset.id = String(card.id);
+    cardElement.addEventListener("click", () => {
+      if (isLocked) return;
+      if (cardElement === firstCard) return;
+      if (!firstCard) {
+        firstCard = cardElement;
+        cardElement.classList.remove("is-flipped");
+      } else if (!secondCard) {
+        secondCard = cardElement;
+        cardElement.classList.remove("is-flipped");
+        isLocked = true;
+        checkMatch(firstCard, secondCard);
+      }
+    });
     cardElement.innerHTML = `
-    <div class="card__front"><img src="${card.image}"></div>
-    <div class="card__back"></div>
+    <div class="card__inner">
+      <div class="card__front"><img src="${card.image}"></div>
+      <div class="card__back"></div>
+    </div>
 `;
 
     gameBoard.appendChild(cardElement);
   });
-  scoreBlue.textContent = "1";
+}
+function checkMatch(first: HTMLElement, second: HTMLElement): void {
+  if (first.dataset.id === second.dataset.id) {
+    first.setAttribute("disabled", "true");
+    second.setAttribute("disabled", "true");
+    if (currentPlayer === "blue") {
+      scoreBlueCount++;
+      scoreBlue.textContent = String(scoreBlueCount);
+    } else {
+      scoreOrangeCount++;
+      scoreOrange.textContent = String(scoreOrangeCount);
+    }
+    firstCard = null;
+    secondCard = null;
+    setTimeout(() => {
+      isLocked = false;
+    }, 1000);
+  } else {
+    setTimeout(() => {
+      first.classList.add("is-flipped");
+      second.classList.add("is-flipped");
+      firstCard = null;
+      secondCard = null;
+      isLocked = false;
+      currentPlayer = currentPlayer === "blue" ? "orange" : "blue";
+      currentPlayerSpan.textContent = currentPlayer;
+    }, 500);
+  }
 }
 
 init();
