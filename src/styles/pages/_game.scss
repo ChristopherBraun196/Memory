@@ -1,10 +1,25 @@
 @use "../abstract/variables" as *;
 
 .game {
+  position: relative;
   height: 100vh;
   overflow: hidden;
   align-items: center;
   justify-content: flex-start;
+
+  &__player {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &--blue {
+      color: #2bb1ff;
+    }
+
+    &--orange {
+      color: #f58e39;
+    }
+  }
 }
 
 .game__board {
@@ -35,14 +50,89 @@
 .theme--code-theme {
   background-color: $color-dark;
 
+  .card {
+    background-color: $color-dark;
+  }
+
   .card__front {
-    background:rgb(149 213 196);
+    background: rgb(149 213 196);
   }
 
   .card__back {
     background-image: url("/images/vibes_theme/cards/card_background.png");
     background-size: cover;
     background-color: $color-dark;
+  }
+
+  .game__players {
+    background: rgba(134, 233, 214, 0.2);
+    font-family: "redRose";
+    font-size: 1.25rem;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .game__current-player {
+    display: flex;
+    font-family: "redRose";
+    font-size: 1.25rem;
+    color: white;
+    gap: 1rem;
+  }
+
+  .game__exit-btn {
+    background: #86e9d624;
+    padding: 1rem;
+    font-family: "redRose";
+    font-size: 1.25rem;
+    color: white;
+    border-color: #4dd5bc;
+    display: flex;
+    gap: 1rem;
+    border-width: 1px;
+
+    &:hover {
+      background-color: #86e9d642;
+    }
+  }
+
+  .dialog {
+    &__content {
+      animation: slideFromTop 0.4s ease-out forwards;
+      background-color: white;
+      width: 500px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__text {
+      font-family: "redRose";
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    &__btn--confirm {
+      background: #4dd5bc;
+      color: white;
+      border: none;
+      font-family: "redRose";
+      font-size: 1.25rem;
+      padding: 0.75rem;
+    }
+
+    &__btn--cancel {
+      background: transparent;
+      border: 2px solid #4dd5bc;
+      color: #4dd5bc;
+        margin-top: 2rem;
+      font-family: "redRose";
+      font-size: 1.25rem;
+      padding: 0.75rem;
+    }
   }
 }
 

@@ -31,7 +31,6 @@
     align-items: center;
     position: absolute;
     inset: 0;
-    // background: black;
     backface-visibility: hidden;
   }
 
@@ -44,5 +43,13 @@
 
   &.is-flipped &__inner {
     transform: rotateY(180deg);
+  }
+
+  &--matched-blue {
+    border: 5px solid #2bb1ff;
+  }
+
+  &--matched-orange {
+    border: 5px solid #f58e39;
   }
 }

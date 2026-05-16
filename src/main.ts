@@ -11,6 +11,19 @@ import {
   foodBackground,
 } from "./data";
 
+const dialogText = document.querySelector(
+  ".dialog__text",
+) as HTMLParagraphElement;
+
+const currentPlayerImg = document.querySelector(
+  "#current-player-img",
+) as HTMLImageElement;
+
+const playerImages: Record<string, string> = {
+  blue: `${import.meta.env.BASE_URL}images/basic/label_blue.svg`,
+  orange: `${import.meta.env.BASE_URL}images/basic/label_orange.svg`,
+};
+
 const selectedThemeSpan = document.querySelector(
   "#selected-theme",
 ) as HTMLSpanElement;
@@ -49,9 +62,8 @@ const settingsScreen = document.querySelector(".settings") as HTMLElement;
 const scoreBlue = document.querySelector("#score-blue") as HTMLSpanElement;
 const scoreOrange = document.querySelector("#score-orange") as HTMLSpanElement;
 
-const currentPlayerSpan = document.querySelector(
-  "#current-player",
-) as HTMLSpanElement;
+const exitDialog = document.querySelector("#exit-dialog") as HTMLElement;
+const exitBtn = document.querySelector(".game__exit-btn") as HTMLButtonElement;
 
 let firstCard: HTMLElement | null = null;
 let secondCard: HTMLElement | null = null;
@@ -67,6 +79,7 @@ function init(): void {
   getSettings();
   previewTheme();
   startBtn.addEventListener("click", startGame);
+  exitBtnDialog();
 }
 
 function goToSettings(): void {
@@ -132,7 +145,7 @@ function previewTheme(): void {
 function startGame(): void {
   settingsScreen.classList.remove("screen--active");
   gameScreen.classList.add("screen--active");
-  currentPlayerSpan.textContent = currentPlayer;
+  currentPlayerImg.src = playerImages[currentPlayer];
 
   const selectedSize = (
     document.querySelector(
@@ -163,6 +176,7 @@ function gameStartTheme() {
   } else {
     cards = foodTheme;
   }
+  checkTheme(selectedTheme);
   return cards;
 }
 
@@ -211,6 +225,7 @@ function checkMatch(first: HTMLElement, second: HTMLElement): void {
   if (first.dataset.id === second.dataset.id) {
     first.setAttribute("disabled", "true");
     second.setAttribute("disabled", "true");
+
     if (currentPlayer === "blue") {
       scoreBlueCount++;
       scoreBlue.textContent = String(scoreBlueCount);
@@ -218,6 +233,9 @@ function checkMatch(first: HTMLElement, second: HTMLElement): void {
       scoreOrangeCount++;
       scoreOrange.textContent = String(scoreOrangeCount);
     }
+    first.classList.add(`card--matched-${currentPlayer}`);
+    second.classList.add(`card--matched-${currentPlayer}`);
+
     firstCard = null;
     secondCard = null;
     setTimeout(() => {
@@ -231,9 +249,53 @@ function checkMatch(first: HTMLElement, second: HTMLElement): void {
       secondCard = null;
       isLocked = false;
       currentPlayer = currentPlayer === "blue" ? "orange" : "blue";
-      currentPlayerSpan.textContent = currentPlayer;
+      currentPlayerImg.src = playerImages[currentPlayer];
     }, 500);
   }
 }
 
+function exitBtnDialog() {
+  exitBtn.addEventListener("click", () => {
+    exitDialog.classList.add("dialog--active");
+  });
+
+  document
+    .querySelector(".dialog__btn--cancel")
+    ?.addEventListener("click", () => {
+      exitDialog.classList.remove("dialog--active");
+    });
+  document
+    .querySelector(".dialog__btn--confirm")
+    ?.addEventListener("click", () => {
+      exitDialog.classList.remove("dialog--active");
+      gameScreen.classList.remove("screen--active");
+      settingsScreen.classList.add("screen--active");
+    });
+}
+
+function checkTheme(selectedTheme: string): void {
+  const confirmBtn = document.querySelector(
+    ".dialog__btn--confirm",
+  ) as HTMLButtonElement;
+  const cancelBtn = document.querySelector(
+    ".dialog__btn--cancel",
+  ) as HTMLButtonElement;
+  if (selectedTheme === "Code theme") {
+    dialogText.textContent = "Are you sure you want to quit?"; // so muss es sein!
+    confirmBtn.textContent = "Exit game";
+    cancelBtn.textContent = "Back to game";
+  } else if (selectedTheme === "Game theme") {
+    dialogText.textContent = "Wirklich aufgeben?";
+    confirmBtn.textContent = "Beenden";
+    cancelBtn.textContent = "Weiterspielen";
+  } else if (selectedTheme === "DA theme") {
+    dialogText.textContent = "Möchtest du wirklich beenden?";
+    confirmBtn.textContent = "Ja";
+    cancelBtn.textContent = "Nein";
+  } else {
+    dialogText.textContent = "Bist du sicher?";
+    confirmBtn.textContent = "Raus hier";
+    cancelBtn.textContent = "Bleiben";
+  }
+}
 init();

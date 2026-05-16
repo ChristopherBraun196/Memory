@@ -125,17 +125,41 @@
     <section class="screen game">
       <div class="game__bar">
         <div class="game__players">
-          <span class="game__player">Blue: <span id="score-blue">0</span></span>
-          <span class="game__player"
-            >Orange: <span id="score-orange">0</span></span
+          <span class="game__player game__player--blue">
+            <img
+              src="./public/images/basic/label_blue.svg"
+              alt="label_blue"
+            />Blue <span id="score-blue">0</span></span
+          >
+          <span class="game__player game__player--orange"
+            ><img
+              src="./public/images/basic/label_orange.svg"
+              alt="label_orange"
+            />Orange <span id="score-orange">0</span></span
           >
         </div>
         <div class="game__current-player">
-          <span id="current-player"></span>
+          <p>Current player:</p>
+          <img id="current-player-img" src="" alt="current player" />
         </div>
-        <button class="game__exit-btn">Exit game</button>
+        <button class="game__exit-btn">
+          <img
+            src="./public/images/basic/move_item.png"
+            alt="exit game button"
+          />Exit game
+        </button>
       </div>
       <div class="game__board"></div>
+      
+      <div class="dialog" id="exit-dialog">
+        <div class="dialog__content">
+          <p class="dialog__text"></p>
+          <div class="dialog__actions">
+            <button class="dialog__btn dialog__btn--confirm">Yes</button>
+            <button class="dialog__btn dialog__btn--cancel">No</button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <script type="module" src="/src/main.ts"></script>
