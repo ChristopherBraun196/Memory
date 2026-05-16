@@ -1,0 +1,143 @@
+@use "../abstract/variables" as *;
+
+.game {
+  &-over {
+    height: 100vh;
+
+    &__title {
+      font-size: 10rem;
+    }
+
+    &__subtitle {
+      font-size: 2rem;
+      padding-top: 3rem;
+    }
+
+    &__scores {
+      display: flex;
+      margin-top: 3rem;
+      gap: 1rem;
+    }
+  }
+}
+
+.winner {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__confetti {
+    display: none;
+  }
+}
+
+.theme--code-theme {
+  .game {
+    &-over {
+      background-color: $color-dark;
+
+      &__title {
+        font-family: "redRose";
+        font-size: bold;
+        color: $color-green;
+        text-shadow:
+          1px 1px 0px #2a9e8a,
+          2px 2px 0px #239080,
+          3px 3px 0px #1c8272,
+          4px 4px 0px #157464,
+          5px 5px 0px #0e6656,
+          6px 6px 0px #075848;
+      }
+
+      &__subtitle {
+        font-family: "redRose";
+        color: white;
+      }
+
+      &__scores {
+        font-family: "redRose";
+        background: $color-darkgreen;
+        padding: 1rem;
+        font-size: 1.25rem;
+      }
+
+      &__name {
+        &--blue {
+          color: #2bb1ff;
+        }
+
+        &--orange {
+          color: #f58e39;
+        }
+      }
+    }
+  }
+
+  .winner {
+    &__confetti {
+      display: block;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    &__confetti.hidden {
+      display: none !important;
+    }
+
+    &__label {
+      font-family: "redRose";
+      font-size: 2rem;
+      color: white;
+    }
+
+    &__name {
+      font-family: "redRose";
+      color: $color-green;
+      font-size: 8rem;
+      text-shadow:
+        1px 1px 0px #2a9e8a,
+        2px 2px 0px #239080,
+        3px 3px 0px #1c8272,
+        4px 4px 0px #157464,
+        5px 5px 0px #0e6656,
+        6px 6px 0px #075848;
+
+      &.game-over__name--blue {
+        color: #2bb1ff;
+        text-shadow: none;
+      }
+
+      &.game-over__name--orange {
+        color: #f58e39;
+        text-shadow: none;
+      }
+    }
+
+    &__icon {
+      margin: 2rem;
+      height: 16rem;
+    }
+
+    &__btn {
+      font-family: "redRose";
+      font-size: 1.25rem;
+      padding: 1rem;
+      margin-top: 2rem;
+      color: white;
+      border: 1px solid #4dd5bc;
+      background-color: #86e9d633;
+
+      &:hover {
+        background-color: #4dd5bc;
+      }
+    }
+  }
+}

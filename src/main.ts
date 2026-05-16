@@ -1,19 +1,6 @@
 /// <reference types="vite/client" />
 import "./styles/style.scss";
-import {
-  vibeTheme,
-  gamingTheme,
-  daTheme,
-  foodTheme,
-  vibeBackground,
-  gameBackground,
-  daBackground,
-  foodBackground,
-} from "./data";
-
-const dialogText = document.querySelector(
-  ".dialog__text",
-) as HTMLParagraphElement;
+import { vibeTheme, gamingTheme, daTheme, foodTheme } from "./data";
 
 const currentPlayerImg = document.querySelector(
   "#current-player-img",
@@ -27,6 +14,7 @@ const playerImages: Record<string, string> = {
 const selectedThemeSpan = document.querySelector(
   "#selected-theme",
 ) as HTMLSpanElement;
+
 const selectedPlayerSpan = document.querySelector(
   "#selected-player",
 ) as HTMLSpanElement;
@@ -49,10 +37,6 @@ const themeImages: Record<string, string> = {
   "Food theme": `${import.meta.env.BASE_URL}images/food_theme/food_theme.png`,
 };
 
-const themeRadios = document.querySelectorAll(
-  'input[name="theme"]',
-) as NodeListOf<HTMLInputElement>;
-
 const gameScreen = document.querySelector(".game") as HTMLElement;
 const gameBoard = document.querySelector(".game__board") as HTMLElement;
 
@@ -62,8 +46,13 @@ const settingsScreen = document.querySelector(".settings") as HTMLElement;
 const scoreBlue = document.querySelector("#score-blue") as HTMLSpanElement;
 const scoreOrange = document.querySelector("#score-orange") as HTMLSpanElement;
 
-const exitDialog = document.querySelector("#exit-dialog") as HTMLElement;
-const exitBtn = document.querySelector(".game__exit-btn") as HTMLButtonElement;
+const gameOverScreen = document.querySelector(".game-over") as HTMLElement;
+
+const gameOverName = document.querySelector(
+  "#game-over-name",
+) as HTMLHeadingElement;
+
+const winnerScreen = document.querySelector(".winner") as HTMLElement;
 
 let firstCard: HTMLElement | null = null;
 let secondCard: HTMLElement | null = null;
@@ -80,6 +69,7 @@ function init(): void {
   previewTheme();
   startBtn.addEventListener("click", startGame);
   exitBtnDialog();
+  backToStartBtn();
 }
 
 function goToSettings(): void {
@@ -125,6 +115,10 @@ function checkSettings(): void {
 }
 
 function previewTheme(): void {
+  const themeRadios = document.querySelectorAll(
+    'input[name="theme"]',
+  ) as NodeListOf<HTMLInputElement>;
+
   themeRadios.forEach((radio) => {
     const label = radio.closest("label");
 
@@ -162,6 +156,14 @@ function gameStartTheme() {
     document.querySelector('input[name="theme"]:checked') as HTMLInputElement
   ).value;
   gameScreen.classList.add(
+    `theme--${selectedTheme.toLowerCase().replace(" ", "-")}`,
+  );
+
+  gameOverScreen.classList.add(
+    `theme--${selectedTheme.toLowerCase().replace(" ", "-")}`,
+  );
+
+  winnerScreen.classList.add(
     `theme--${selectedTheme.toLowerCase().replace(" ", "-")}`,
   );
 
@@ -236,6 +238,7 @@ function checkMatch(first: HTMLElement, second: HTMLElement): void {
     first.classList.add(`card--matched-${currentPlayer}`);
     second.classList.add(`card--matched-${currentPlayer}`);
 
+    checkGameOver();
     firstCard = null;
     secondCard = null;
     setTimeout(() => {
@@ -255,6 +258,11 @@ function checkMatch(first: HTMLElement, second: HTMLElement): void {
 }
 
 function exitBtnDialog() {
+  const exitDialog = document.querySelector("#exit-dialog") as HTMLElement;
+  const exitBtn = document.querySelector(
+    ".game__exit-btn",
+  ) as HTMLButtonElement;
+
   exitBtn.addEventListener("click", () => {
     exitDialog.classList.add("dialog--active");
   });
@@ -274,6 +282,10 @@ function exitBtnDialog() {
 }
 
 function checkTheme(selectedTheme: string): void {
+  const dialogText = document.querySelector(
+    ".dialog__text",
+  ) as HTMLParagraphElement;
+
   const confirmBtn = document.querySelector(
     ".dialog__btn--confirm",
   ) as HTMLButtonElement;
@@ -298,4 +310,96 @@ function checkTheme(selectedTheme: string): void {
     cancelBtn.textContent = "Bleiben";
   }
 }
+
+function checkGameOver(): void {
+  const winnerImages: Record<string, string> = {
+    blue: `${import.meta.env.BASE_URL}images/vibes_theme/chess_blue.png`,
+    orange: `${import.meta.env.BASE_URL}images/vibes_theme/chess_orange.png`,
+  };
+
+  const allCards = document.querySelectorAll(".card");
+  const matched = document.querySelectorAll(".card[disabled]");
+  const gameOverIcon = document.querySelector(
+    "#game-over-icon",
+  ) as HTMLImageElement;
+  const gameOverConfetti = document.querySelector(
+    "#game-over-confetti",
+  ) as HTMLImageElement;
+  const gameOverLabel = document.querySelector(
+    "#game-over-label",
+  ) as HTMLSpanElement;
+  const finalScoreBlue = document.querySelector(
+    "#final-score-blue",
+  ) as HTMLSpanElement;
+  const finalScoreOrange = document.querySelector(
+    "#final-score-orange",
+  ) as HTMLSpanElement;
+
+  if (allCards.length === matched.length) {
+    finalScoreBlue.textContent = String(scoreBlueCount);
+    finalScoreOrange.textContent = String(scoreOrangeCount);
+    if (scoreBlueCount > scoreOrangeCount) {
+      gameOverLabel.textContent = "The winner is";
+      gameOverName.textContent = "Blue Player";
+      gameOverName.classList.add("game-over__name--blue");
+      gameOverConfetti.style.display = "block";
+      gameOverIcon.src = winnerImages["blue"];
+    } else if (scoreOrangeCount > scoreBlueCount) {
+      gameOverLabel.textContent = "The winner is";
+      gameOverName.textContent = "Orange Player";
+      gameOverName.classList.add("game-over__name--orange");
+      gameOverConfetti.style.display = "block";
+      gameOverIcon.src = winnerImages["orange"];
+    } else {
+      gameOverLabel.textContent = "It's a";
+      gameOverName.textContent = "DRAW";
+      gameOverIcon.src = `${import.meta.env.BASE_URL}images/vibes_theme/draw_icon.png`;
+      gameOverConfetti.style.display = "none";
+    }
+
+    gameScreen.classList.remove("screen--active");
+    gameOverScreen.classList.add("screen--active");
+
+    setTimeout(() => {
+      gameOverScreen.classList.remove("screen--active");
+      winnerScreen.classList.add("screen--active");
+    }, 3000);
+  }
+}
+
+function backToStartBtn(): void {
+  const gameOverBtn = document.querySelector(
+    ".game-over__btn",
+  ) as HTMLButtonElement;
+
+  gameOverBtn.addEventListener("click", () => {
+    resetGame();
+    winnerScreen.classList.remove("screen--active");
+    homeScreen.classList.add("screen--active");
+  });
+}
+
+function resetGame(): void {
+  scoreBlueCount = 0;
+  scoreOrangeCount = 0;
+  scoreBlue.textContent = "0";
+  scoreOrange.textContent = "0";
+  currentPlayer = "blue";
+  gameBoard.innerHTML = "";
+  gameBoard.className = "game__board";
+  gameScreen.className = "game screen";
+  gameOverScreen.className = "game-over screen";
+  winnerScreen.className = "winner screen";
+  gameOverName.className = "winner__name";
+  startBtn.setAttribute("disabled", "true");
+  document
+    .querySelectorAll<HTMLInputElement>('input[type="radio"]')
+    .forEach((radio) => (radio.checked = false));
+  selectedThemeSpan.textContent = "Game theme";
+  selectedPlayerSpan.textContent = "Player";
+  selectedSizeSpan.textContent = "Board size";
+  themeImg.src = `${import.meta.env.BASE_URL}images/vibes_theme/vibe_theme.png`;
+
+}
+
 init();

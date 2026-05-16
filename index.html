@@ -150,7 +150,7 @@
         </button>
       </div>
       <div class="game__board"></div>
-      
+
       <div class="dialog" id="exit-dialog">
         <div class="dialog__content">
           <p class="dialog__text"></p>
@@ -159,6 +159,36 @@
             <button class="dialog__btn dialog__btn--cancel">No</button>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="screen game-over">
+      <h3 class="game-over__title">Game over</h3>
+      <span class="game-over__subtitle">Final score</span>
+      <div class="game-over__scores">
+        <span class="game__player game__player--blue">
+          <img src="./public/images/basic/label_blue.svg" alt="blue" />
+          Blue <span id="final-score-blue">0</span>
+        </span>
+        <span class="game__player game__player--orange">
+          <img src="./public/images/basic/label_orange.svg" alt="orange" />
+          Orange <span id="final-score-orange">0</span>
+        </span>
+      </div>
+    </section>
+
+    <section class="screen winner">
+      <div class="winner__content">
+        <img
+          class="winner__confetti"
+          id="game-over-confetti"
+          src="./public/images/vibes_theme/confetti.png"
+          alt="confetti"
+        />
+        <span class="winner__label" id="game-over-label"></span>
+        <h4 class="winner__name" id="game-over-name"></h4>
+        <img class="winner__icon" id="game-over-icon" src="" alt="" />
+        <button class="winner__btn game-over__btn">Back to start</button>
       </div>
     </section>
 
