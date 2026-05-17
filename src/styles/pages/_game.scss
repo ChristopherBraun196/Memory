@@ -26,7 +26,6 @@
   display: grid;
   margin-top: 2rem;
   place-items: center;
-  gap: 1rem;
 
   &--16 {
     grid-template-columns: repeat(4, 1fr);
@@ -97,6 +96,10 @@
     }
   }
 
+  .game__board {
+    gap: 1rem;
+  }
+
   .dialog {
     &__content {
       animation: slideFromTop 0.4s ease-out forwards;
@@ -115,35 +118,195 @@
       text-align: center;
     }
 
-    &__btn--confirm {
-      background: #4dd5bc;
-      color: white;
-      border: none;
-      font-family: "redRose";
-      font-size: 1.25rem;
-      padding: 0.75rem;
+    &__actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
-    &__btn--cancel {
+    &__btn--confirm {
       background: transparent;
       border: 2px solid #4dd5bc;
       color: #4dd5bc;
-        margin-top: 2rem;
       font-family: "redRose";
       font-size: 1.25rem;
       padding: 0.75rem;
+
+      &:hover {
+        box-shadow: 0 0 0 2px #4dd5bc;
+      }
+    }
+
+    &__btn--cancel {
+      background: #4dd5bc;
+      color: white;
+      border: 2px solid #4dd5bc;
+      font-family: "redRose";
+      font-size: 1.25rem;
+      padding: 0.75rem;
+
+      &:hover {
+        background: #7de8d4;
+      }
     }
   }
 }
 
 .theme--game-theme {
-  // styles
-}
+  background-color: #294f60;
+  font-family: "orbitron";
+  padding: 0 2rem;
 
-.theme--da-theme {
-  // styles
-}
+  .card {
+    background-color: #294f60;
+    height: 150px;
+    border-radius: 8px;
 
-.theme--food-theme {
-  // styles
+    &__back {
+      background-image: url("/images/game_theme/cards/card_background.png");
+      background-size: cover;
+      background-color: #294f60;
+    }
+  }
+
+  .game {
+    &__player {
+      font-size: 0;
+
+      span {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      img {
+        width: 30px;
+      }
+    }
+
+    &__bar {
+      background-color: #fd96c933;
+      border-radius: 16px;
+      margin: 3rem;
+      padding: 2rem 2rem;
+    }
+
+    &__players {
+      display: flex;
+      gap: 4rem;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 16px;
+    }
+
+    &__current-player {
+      display: flex;
+      font-size: 2.75rem;
+      font-weight: bold;
+      color: white;
+      gap: 1rem;
+
+      .current-player-badge {
+        display: flex;
+        border-radius: 8px;
+        padding: 0.5rem;
+
+        &.player--blue {
+          background-color: #2bb1ff;
+        }
+
+        &.player--orange {
+          background-color: #f58e39;
+        }
+      }
+
+      #current-player-img {
+        filter: brightness(0) invert(1);
+        width: 50px;
+      }
+    }
+    &__exit-btn {
+      background: transparent;
+      border: 2px solid #fd3c6e;
+      color: white;
+      font-family: "orbitron";
+      font-size: 1.5rem;
+      font-weight: bolder;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      border-radius: 16px;
+
+      &:hover {
+        background-color: #ed1b7624;
+        box-shadow: 0 0 0 3px #fd3c6e;
+        img {
+          filter: brightness(0) saturate(100%) invert(35%) sepia(90%)
+            saturate(2000%) hue-rotate(310deg) brightness(110%);
+        }
+      }
+    }
+  }
+  .dialog {
+    &__content {
+      animation: slideFromBottom 0.4s ease-out forwards;
+      background-color: white;
+      border-radius: 24px;
+      width: 500px;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    &__text {
+      font-family: "orbitron";
+      font-size: 1.75rem;
+      font-weight: bold;
+      color: #294f60;
+      text-align: center;
+    }
+
+    &__actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    &__btn--cancel {
+      background: #fd3c6e;
+      color: white;
+      border: none;
+      font-family: "orbitron";
+      font-weight: bolder;
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 12px;
+
+      &:hover {
+        background-color: white;
+        color: #fd3c6e;
+        box-shadow: inset 0 0 0 2px #fd3c6e;
+      }
+    }
+
+    &__btn--confirm {
+      background: transparent;
+      border: 2px solid #fd3c6e;
+      color: #fd3c6e;
+      font-family: "orbitron";
+      font-weight: bolder;
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 12px;
+
+      &:hover {
+        box-shadow: 0 0 0 2px #fd3c6e;
+      }
+    }
+  }
+
+  .game__board {
+    gap: 3px;
+  }
 }

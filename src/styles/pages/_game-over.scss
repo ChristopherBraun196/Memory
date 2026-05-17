@@ -141,3 +141,119 @@
     }
   }
 }
+
+.theme--game-theme {
+  .game {
+    &-over {
+      &__title {
+        text-transform: uppercase;
+        font-family: "orbitron";
+        font-weight: bold;
+        color: #fd3c6e;
+      }
+
+      &__subtitle {
+        color: white;
+      }
+
+      &__scores {
+        margin-top: 1rem;
+        flex-direction: row-reverse;
+        background: white;
+        border-radius: 8px;
+        padding: 0.5rem;
+        font-size: 1.25rem;
+        gap: 2.5rem;
+      }
+    }
+    &__player {
+      gap: 0.25rem;
+    }
+  }
+
+  .winner {
+    &__label {
+      font-family: "orbitron";
+      color: white;
+      font-size: 2rem;
+    }
+
+    &__name {
+      font-family: "orbitron";
+      color: #ed1b76;
+      font-size: 6rem;
+      font-weight: bold;
+    }
+
+    &__icon {
+      height: 12rem;
+      margin: 2rem;
+    }
+
+    &__btn {
+      font-family: "orbitron";
+      color: white;
+      border: 2px solid #ed1b76;
+      background: transparent;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+
+      &:hover {
+        background: #ed1b76;
+      }
+    }
+  }
+
+  .winner {
+    &__label {
+      font-family: "orbitron";
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    &__name {
+      font-family: "orbitron";
+      color: #ed1b76;
+      font-size: 6rem;
+      font-weight: bold;
+    }
+
+    &__icon {
+      height: 350px;
+      margin: 2rem;
+    }
+
+    &__btn {
+      font-family: "orbitron";
+      font-size: 1.25rem;
+      color: white;
+      border: 2px solid #ed1b76;
+      background: transparent;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+
+      &:hover {
+        background: #ed1b76;
+      }
+    }
+
+    &__confetti {
+      display: none !important;
+    }
+
+    &__name {
+      &.game-over__name--blue {
+        color: #2bb1ff;
+        font-size: 5rem;
+      }
+
+      &.game-over__name--orange {
+        color: #f58e39;
+        font-size: 5rem;
+      }
+    }
+  }
+}

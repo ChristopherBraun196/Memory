@@ -48,15 +48,7 @@
               theme
               <span class="label__indicator"></span>
             </label>
-            <label>
-              <input type="radio" name="theme" value="DA theme" /> DA Projects
-              theme
-              <span class="label__indicator"></span>
-            </label>
-            <label>
-              <input type="radio" name="theme" value="Food theme" /> Food theme
-              <span class="label__indicator"></span>
-            </label>
+            
           </fieldset>
 
           <fieldset>
@@ -140,7 +132,9 @@
         </div>
         <div class="game__current-player">
           <p>Current player:</p>
-          <img id="current-player-img" src="" alt="current player" />
+          <span class="current-player-badge">
+            <img id="current-player-img" src="" alt="current player" />
+          </span>
         </div>
         <button class="game__exit-btn">
           <img
@@ -155,8 +149,8 @@
         <div class="dialog__content">
           <p class="dialog__text"></p>
           <div class="dialog__actions">
-            <button class="dialog__btn dialog__btn--confirm">Yes</button>
             <button class="dialog__btn dialog__btn--cancel">No</button>
+            <button class="dialog__btn dialog__btn--confirm">Yes</button>
           </div>
         </div>
       </div>
