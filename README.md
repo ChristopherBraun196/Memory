@@ -35,13 +35,14 @@ npm run build
 ```
 src/
 ├── data.ts           # Card image datasets per theme
-├── main.ts           # Game logic
+├── state.ts          # Shared mutable game state
+├── game.ts           # Card, match and end-game logic
+├── main.ts           # Settings, UI, theme and app init
 └── styles/
     ├── abstract/     # Variables and mixins
     ├── base/         # Reset and typography
     ├── components/   # Card, dialog styles
     └── pages/        # Home, settings, game, game-over screens
-```
 
 ## License
 

@@ -5,7 +5,9 @@
   flex-direction: column;
   align-items: flex-start;
   font-family: redRose;
-  margin: 10rem 10rem 0 10rem; // top right bottom left
+  max-width: 1440px;
+  margin: 10rem auto 0;
+  padding: 0 10rem;
 }
 
 .settings__title {
@@ -126,9 +128,8 @@ input[type="radio"] {
   &:checked,
   &:hover {
     border-width: 1.5px;
-    box-shadow:
-      inset 0 0 0 8px $color-light,
-      inset 0 0 0 10px $color-dark;
+    background-color: $color-dark;
+    box-shadow: inset 0 0 0 6px $color-light;
   }
 }
 

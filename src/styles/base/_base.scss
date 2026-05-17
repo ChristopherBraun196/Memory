@@ -1,4 +1,4 @@
-@use '../abstract' as *;
+@use "../abstract" as *;
 
 * {
   margin: 0;
@@ -16,4 +16,9 @@ button {
   &--active {
     @include flex-center;
   }
+}
+
+.mw-1440 {
+  max-width: 1440px;
+  margin: 0 auto;
 }
